@@ -63,12 +63,12 @@ notes
 -----
 
 the ``-nb [QUERY], --nukebutton [QUERY]`` \
-script's argument is meant to work with the [nuke-button](https://github.com/yassghn/nuke-button) project.
+script's argument is meant to work with the `nuke-button <https://github.com/yassghn/nuke-button>`_ project.
 
 to get that going, you should setup a custom firefox profile for selenium \
-usage complete with a userscript manager and the [nuke-button](https://github.com/yassghn/nuke-button) installed.
+usage complete with a userscript manager and the `nuke-button <https://github.com/yassghn/nuke-button>`_ installed.
 
-then edit the config dictionary global constant near the top of [twitter_assistant.py](/src/twitter_assistant/twitter_assistant.py) \
+then edit the config dictionary global constant near the top of `twitter_assistant.py </src/twitter_assistant/twitter_assistant.py`_ \
 adding your browser profile's ``root-directory`` to the ``ffprofile_folder`` key/value pair.
 
 license
