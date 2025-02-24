@@ -8,68 +8,65 @@ twitter blocking script written with python and selenium
 setup
 -----
 
-* clone repo
+clone
 
-    ``$ git clone git@github.com:yassghn/twitter_assistant``
+.. code-block:: gitignore
 
-* setup virtualenv
+   git clone git@github.com:yassghn/twitter_assistant
 
-    ``$ pythom -m venv twitter_assistant/``
+setup virtualenv
 
-* cd dir
+.. code-block:: boo
 
-    ``$ cd twitter_assistant/``
+    $ pythom -m venv ./twitter_assistant
 
-* activate virtualenv (select correct script for your os)
+activate virtualenv (select correct script for your os/shell)
 
-    ``$ ./Scripts/Activate.ps1``
+.. code-block:: boo
 
-* install requirements
+    $ cd ./twitter_assistant
 
-    ``$ pip install -r ./requirements.txt``
+    $ ./Scripts/Activate.ps1
+
+
+install requirements
+
+.. code-block:: boo
+
+    $ pip install -r ./requirements.txt
 
 running
 -------
 
-* cd dir
+cd src dir & let the assistant assist!
 
-    ``$ cd twitter_assistant/``
+.. code-block:: boo
 
-* activate virtualenv (select correct script for your os)
+    $ cd ./src
 
-    ``$ ./Scripts/Activate.ps1``
-
-* cd src dir
-
-    ``$ cd src/``
-
-* let the assistant assist!
-
-    ``$ pythom -m twitter_assistant -s racism -v``
+    $ pythom -m twitter_assistant -s racism -v
 
 usage
 -----
 
     ``[-h] [-s [QUERY]] [-nb [QUERY]] [-v]``
 
-    -h, --help            show this help message and exit
-    -s [QUERY], --search [QUERY]
-                        add search query
-    -nb [QUERY], --nuke-button [QUERY]
-                        use nuke button to block
-    -v, --verbose         turn on verbose logging
+    -h, --help              show this help message and exit
+    -s, --search            add search query
+    -nb, --nuke-button      use nuke button to block
+    -v, --verbose           turn on verbose logging
 
 notes
 -----
 
-the ``-nb [QUERY], --nukebutton [QUERY]`` \
-script's argument is meant to work with the `nuke-button <https://github.com/yassghn/nuke-button>`_ project.
-
-to get that going, you should setup a custom firefox profile for selenium \
-usage complete with a userscript manager and the `nuke-button <https://github.com/yassghn/nuke-button>`_ installed.
-
-then edit the config dictionary global constant near the top of `twitter_assistant.py </src/twitter_assistant/twitter_assistant.py>`_ \
-adding your browser profile's ``root-directory`` to the ``ffprofile_folder`` key/value pair.
+| the ``-nb [QUERY], --nukebutton [QUERY]``
+| script's argument is meant to work with the `nuke-button <https://github.com/yassghn/nuke-button>`_ project.
+|
+| to get that going, you should setup a custom firefox profile for selenium
+| usage complete with a userscript manager and the `nuke-button <https://github.com/yassghn/nuke-button>`_ installed.
+|
+| then edit the config dictionary global constant near the top of `twitter_assistant.py </src/twitter_assistant/twitter_assistant.py>`_
+| adding your browser profile's ``root-directory`` to the ``ffprofile_folder`` key/value pair.
 
 license
 -------
