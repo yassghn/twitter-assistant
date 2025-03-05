@@ -16,11 +16,13 @@ CONFIG = {'username': '',
           'sleep_short': 1,
           'sleep_mid': 3,
           'sleep_long': 5,
-          'webdriver_wait': 3,
+          'webdriver_wait': 45,
           'search_query': '',
           'nuke_query': '',
           'ffprofile_folder': r'',
+          'ffprofile_name': '',
           'ffbinary': r'',
+          'headless': True,
           'debug': False,
           'log_format': '%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s'}
 
@@ -41,7 +43,10 @@ SELECTORS = {'username_login_field': 'input[autocomplete="username"]',
              'nuke_button': 'a.nuke-button',
              'nuke_confirm': 'button[value="true"]'}
 
-SEARCH_QUERIES = {'racism': 'white excellence'}
+SEARCH_QUERIES = {'racism': 'white excellence',
+                  'bullshit': 'yaoi',
+                  'retardation': 'asdf',
+                  'random': 'kanye west'}
 
 NUKE_QUERIES = {
     'foryou': 'home'
@@ -84,8 +89,12 @@ class ffdriver(object):
     def __new__(cls):
         if cls._instance is None:
             log('creating web driver')
-            # setup firefox profile
+            # setup firefox options
             options = Options()
+            # set headless option
+            if CONFIG['headless']:
+                log('setting headless argument')
+                options.add_argument('-headless')
             # set browser binary option
             if CONFIG['ffbinary'] != '':
                 ffbinary = CONFIG['ffbinary']
@@ -95,9 +104,15 @@ class ffdriver(object):
             if CONFIG['ffprofile_folder'] != '':
                 ffprofile_folder = CONFIG['ffprofile_folder']
                 log('setting browser profile: %s' %ffprofile_folder)
-                options.profile = FirefoxProfile(ffprofile_folder)
+                #options.profile = FirefoxProfile(ffprofile_folder)
+                options.add_argument('-p %s' %CONFIG['ffprofile_name'])
             # create webdriver with options
+            log('using options:')
+            log(options.arguments)
+            log(options.binary_location)
             cls._instance = webdriver.Firefox(options)
+            # prevent navigator.webdriver from returning true
+            cls._instance.execute_script('Object.defineProperty(navigator, "webdriver", {get: () => undefined})')
             # wet webdriver implicitly wait
             # todo: need better wait strategy
             cls._instance.implicitly_wait(CONFIG['webdriver_wait'])
@@ -114,6 +129,7 @@ def find_elem(driver, css_selector, multi=False):
 def login():
     # get driver
     driver = ffdriver()
+
     # open webpage
     driver.get(TARGETS['login'])
     # sleep let load
