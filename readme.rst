@@ -66,7 +66,7 @@ notes
 | usage complete with a userscript manager and the `nuke-button <https://github.com/yassghn/nuke-button>`_ installed.
 |
 | then edit the config dictionary global constant near the top of `twitter_assistant.py </src/twitter_assistant/twitter_assistant.py>`_
-| adding your browser profile's ``root-directory`` to the ``ffprofile_folder`` key/value pair.
+| adding your browser profile's ``name`` to the ``ffprofile_name`` key/value pair.
 
 license
 -------
